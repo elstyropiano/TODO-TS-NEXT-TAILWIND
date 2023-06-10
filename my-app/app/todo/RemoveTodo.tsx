@@ -1,14 +1,10 @@
-"use client";
-
 import { FC } from "react";
-interface RemoveTodoProps {
-  index: number;
-  removeTodo: (index: number) => void;
-}
-const RemoveTodo: FC<RemoveTodoProps> = ({ removeTodo, index }) => (
+import { RemoveTodoProps } from "../models/TodoModels";
+
+const RemoveTodo: FC<RemoveTodoProps> = ({ handleDeleteTodo, id }) => (
   <button
-    onClick={() => removeTodo(index)}
-    style={{ border: "1px solid black" }}
+    className="btn btn-error btn-sm hover:bg-error-hover"
+    onClick={() => handleDeleteTodo(id)}
   >
     delete
   </button>

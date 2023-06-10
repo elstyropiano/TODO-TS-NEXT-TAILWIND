@@ -1,11 +1,13 @@
 import { FC } from "react";
-interface MarkAsReadProps {
-  checked: boolean;
-  index: number;
-  markAsRead: (index: number) => void;
-}
+import { MarkAsReadProps } from "../models/TodoModels";
 
-const MarkAsRead: FC<MarkAsReadProps> = ({ index, markAsRead, checked }) => (
-  <input type="checkbox" checked={checked} onChange={() => markAsRead(index)} />
+const MarkAsRead: FC<MarkAsReadProps> = ({ handleCheckbox, checked, id }) => (
+  <input
+    className="checkbox checkbox-accent checkbox-xl"
+    type="checkbox"
+    checked={checked}
+    onChange={() => handleCheckbox(id, checked)}
+  />
 );
+
 export default MarkAsRead;

@@ -1,53 +1,44 @@
 "use client";
-import useTodo from "../useTodo";
+
 import { FC } from "react";
+
+import useTodo from "../useTodo";
 import TodoList from "./TodoList";
+import AddTodo from "./AddTodo";
 
 const Todo: FC = () => {
   const {
-    addTodo,
-    inputValue,
-    setInputValue,
-    todoList,
-    removeTodo,
-    markAsRead,
-    selectedValue,
-    setSelectedValue,
     changeTodoCategory,
+    error,
+    handleCheckbox,
+    handleCreateTodo,
+    handleDeleteTodo,
+    inputValue,
+    loading,
+    selectedValue,
+    setInputValue,
+    setSelectedValue,
+    todos,
   } = useTodo();
 
   return (
-    <>
-      <form onSubmit={(e) => addTodo(e)}>
-        <input
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-        />
-        <select
-          value={selectedValue}
-          onChange={(e) => {
-            setSelectedValue(e.target.value);
-          }}
-        >
-          <option value="">select type</option>
-          <option value="work">work</option>
-          <option value="house">house</option>
-        </select>
-
-        <button
-          disabled={selectedValue === "" || inputValue === ""}
-          type="submit"
-        >
-          Add todo
-        </button>
-      </form>
+    <div className="pt-8">
+      <AddTodo
+        handleCreateTodo={handleCreateTodo}
+        inputValue={inputValue}
+        selectedValue={selectedValue}
+        setInputValue={setInputValue}
+        setSelectedValue={setSelectedValue}
+      />
       <TodoList
-        todoList={todoList}
-        removeTodo={removeTodo}
-        markAsRead={markAsRead}
+        loading={loading}
+        todos={todos}
+        error={error}
+        handleDeleteTodo={handleDeleteTodo}
+        handleCheckbox={handleCheckbox}
         changeTodoCategory={changeTodoCategory}
       />
-    </>
+    </div>
   );
 };
 

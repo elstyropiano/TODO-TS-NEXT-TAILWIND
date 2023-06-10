@@ -1,20 +1,18 @@
-import { ChangeEvent, FC } from "react";
-interface ChangeCategoryProps {
-  index: number;
-  category: string;
-  changeTodoCategory: (
-    e: ChangeEvent<HTMLSelectElement>,
-    index: number
-  ) => void;
-}
+import { FC } from "react";
+import { ChangeCategoryProps } from "../models/TodoModels";
+
 const ChangeCategory: FC<ChangeCategoryProps> = ({
-  index,
+  id,
   changeTodoCategory,
   category,
 }) => (
-  <select value={category} onChange={(e) => changeTodoCategory(e, index)}>
+  <select
+    className="select select-bordered select-sm"
+    value={category}
+    onChange={(e) => changeTodoCategory(e, id)}
+  >
     <option value="work">work</option>
-    <option value="house">house</option>
+    <option value="home">home</option>
   </select>
 );
 
